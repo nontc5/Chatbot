@@ -33,7 +33,7 @@ foreach ($client->parseEvents() as $event) {
                         'messages' => array(
                             array(
                                 'type' => 'text',
-                                'text' => $message['Hello, this message from echobot_API By Nontc5']
+                                'text' => $message['text']
                             )
                         )
                     ));
