@@ -19,6 +19,8 @@ if (!is_null($events['events'])) {
 			$curlResource = curl_init();
 			curl_setopt($curlResource, CURLOPT_URL, "http://nontc5.utcc-ict.com/Chatbot/api/put.php?word=$message");
 			$result = curl_exec($curlResource);
+			$header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+			$header = substr($result, 0, $header_size);
 			$body = substr($result, $header_size);
 			curl_close($curlResource);
 			
