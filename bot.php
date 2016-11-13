@@ -1,6 +1,8 @@
 <?php
 $access_token = 'DB8I5JoQOS3JPLAlIqEhZD35rozSYBvSLlKwXvw+73vOruhQ/nOf3xOwju0zON/uMrmfPYPnJ0PSkmO09sLUhmFP8xo0M5HJpmDpwC5sC4JRGFJzr8+9L953NGyJ6cvNc2l+MwEaABjB393SqnO1MwdB04t89/1O/w1cDnyilFU=';
 
+function 
+
 // Get POST body content
 $content = file_get_contents('php://input');
 // Parse JSON
@@ -14,8 +16,9 @@ if (!is_null($events['events'])) {
 			// Get text sent
 			$text = $event['message']['text'];
 			
+			$message = str_replace(' ', '%20', $message);
 			$curlResource = curl_init();
-			curl_setopt($curlResource, CURLOPT_URL, "http://nontc5.utcc-ict.com/Chatbot/api/put.php?word=$text");
+			curl_setopt($curlResource, CURLOPT_URL, "http://nontc5.utcc-ict.com/Chatbot/api/put.php?word=$message");
 			curl_exec($curlResource);
 			curl_close($curlResource);
 			
