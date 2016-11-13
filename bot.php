@@ -18,7 +18,7 @@ if (!is_null($events['events'])) {
 			$message = str_replace(' ', '%20', $text);
 			$curlResource = curl_init();
 			curl_setopt($curlResource, CURLOPT_URL, "http://nontc5.utcc-ict.com/Chatbot/api/put.php?word=$message");
-			curl_exec($curlResource);
+			$result = curl_exec($curlResource);
 			curl_close($curlResource);
 			
 			// Get replyToken
@@ -27,7 +27,7 @@ if (!is_null($events['events'])) {
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
-				'text' => 'Bot Response: '.$text.'Token: '.$replyToken
+				'text' => 'Bot Response: '.$text.'Result: '.$result
 			];
 
 			// Make a POST Request to Messaging API to reply to sender
