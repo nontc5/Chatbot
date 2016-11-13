@@ -15,12 +15,12 @@ if (!is_null($events['events'])) {
 			$text = $event['message']['text'];
 			
 
-							// Get cURL resource
+			// Get cURL resource
 			$curl = curl_init();
 			// Set some options - we are passing in a useragent too here
 			curl_setopt_array($curl, array(
 			    CURLOPT_RETURNTRANSFER => 1,
-			    CURLOPT_URL => 'http://nontc5.utcc-ict.com/Chatbot/api/put.php?word='.$text,
+			    CURLOPT_URL => 'http://nontc5.utcc-ict.com/Chatbot/api/put.php?word=TestingFromLine',
 			    CURLOPT_USERAGENT => 'Codular Sample cURL Request'
 			));
 			// Send the request & save response to $resp
