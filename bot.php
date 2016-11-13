@@ -16,7 +16,7 @@ if (!is_null($events['events'])) {
 			// Get text sent
 			$text = $event['message']['text'];
 			
-			$message = str_replace(' ', '%20', $message);
+			$message = str_replace(' ', '%20', $text);
 			$curlResource = curl_init();
 			curl_setopt($curlResource, CURLOPT_URL, "http://nontc5.utcc-ict.com/Chatbot/api/put.php?word=$message");
 			curl_exec($curlResource);
