@@ -13,7 +13,20 @@ if (!is_null($events['events'])) {
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			// Get text sent
 			$text = $event['message']['text'];
-			sendMessage($text);
+			
+
+							// Get cURL resource
+			$curl = curl_init();
+			// Set some options - we are passing in a useragent too here
+			curl_setopt_array($curl, array(
+			    CURLOPT_RETURNTRANSFER => 1,
+			    CURLOPT_URL => 'http://nontc5.utcc-ict.com/Chatbot/api/put.php?word='.$text,
+			    CURLOPT_USERAGENT => 'Codular Sample cURL Request'
+			));
+			// Send the request & save response to $resp
+			$resp = curl_exec($curl);
+			// Close request to clear up some resources
+			curl_close($curl);
 
 			
 			// Get replyToken
