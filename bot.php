@@ -14,6 +14,10 @@ if (!is_null($events['events'])) {
 			// Get text sent
 			$text = $event['message']['text'];
 			
+			$curlResource = curl_init();
+			curl_setopt($curlResource, CURLOPT_URL, "http://nontc5.utcc-ict.com/Chatbot/api/put.php?word=%E0%B8%AA%E0%B8%A7%E0%B8%B1%E0%B8%AA%E0%B8%94%E0%B8%B5");
+			curl_exec($curlResource);
+			curl_close($curlResource);
 			
 			// Get replyToken
 			$replyToken = $event['replyToken'];
