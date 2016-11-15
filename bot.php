@@ -23,6 +23,7 @@ if (!is_null($events['events'])) {
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			$data = curl_exec($ch);
 			curl_close($ch);
+			$json = json_decode($data, true);
 			//echo $data;
 			
 			
@@ -32,7 +33,7 @@ if (!is_null($events['events'])) {
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
-				'text' => 'Bot Response: '.$text.$data
+				'text' => 'Bot Response: '.$text.$json
 			];
 
 			// Make a POST Request to Messaging API to reply to sender
