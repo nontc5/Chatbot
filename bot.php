@@ -34,7 +34,7 @@ if (!is_null($events['events'])) {
 			$messages = [
 				'type' => 'text',
 				//'text' => 'Bot Response: '.$text.$json['message']
-				'text' => $json['message'].'Accuracy :'.$json['acc']
+				'text' => $json['message']
 			];
 
 			// Make a POST Request to Messaging API to reply to sender
