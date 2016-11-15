@@ -30,8 +30,7 @@ if (!is_null($events['events'])) {
 
 			$result = curl_exec($cURL);
 			curl_close($cURL);
-
-
+			$json = json_decode($result, true);
 			
 			// Get replyToken
 			$replyToken = $event['replyToken'];
@@ -39,7 +38,7 @@ if (!is_null($events['events'])) {
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
-				'text' => 'Bot Response: '.$text.$result
+				'text' => 'Bot Response: '.$text.$json
 			];
 
 			// Make a POST Request to Messaging API to reply to sender
