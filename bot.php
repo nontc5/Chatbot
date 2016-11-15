@@ -17,7 +17,8 @@ if (!is_null($events['events'])) {
 			
 			$message = str_replace(' ', '%20', $text);
 			$curlResource = curl_init();
-			curl_setopt($curlResource, CURLOPT_URL, "http://nontc5.utcc-ict.com/Chatbot/api/put.php?word=$message");
+			//curl_setopt($curlResource, CURLOPT_URL, "http://nontc5.utcc-ict.com/Chatbot/api/put.php?word=$message");
+			curl_setopt($curlResource, CURLOPT_URL, "http://nontc5.utcc-ict.com/Chatbot/api/line_call.php?word=$message");
 			curl_exec($curlResource);
 			curl_close($curlResource);
 			
