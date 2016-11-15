@@ -16,12 +16,22 @@ if (!is_null($events['events'])) {
 			$text = $event['message']['text'];
 			
 			$message = str_replace(' ', '%20', $text);
-			$curlResource = curl_init();
-			//curl_setopt($curlResource, CURLOPT_URL, "http://nontc5.utcc-ict.com/Chatbot/api/put.php?word=$message");
-			curl_setopt($curlResource, CURLOPT_URL, "http://nontc5.utcc-ict.com/Chatbot/api/line_call.php?word=$message");
-			curl_exec($curlResource);
-			curl_close($curlResource);
-			
+			$url = "http://nontc5.utcc-ict.com/Chatbot/api/line_call.php?word=$message";
+
+			$cURL = curl_init();
+
+			curl_setopt($cURL, CURLOPT_URL, $url);
+			curl_setopt($cURL, CURLOPT_HTTPGET, true);
+
+			curl_setopt($cURL, CURLOPT_HTTPHEADER, array(
+			    'Content-Type: application/json',
+			    'Accept: application/json'
+			));
+
+			$result = curl_exec($cURL);
+			curl_close($cURL);
+
+
 			
 			// Get replyToken
 			$replyToken = $event['replyToken'];
@@ -29,7 +39,7 @@ if (!is_null($events['events'])) {
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
-				'text' => 'Bot Response: '.$text
+				'text' => 'Bot Response: '.$text.$result
 			];
 
 			// Make a POST Request to Messaging API to reply to sender
