@@ -16,21 +16,16 @@ if (!is_null($events['events'])) {
 			$text = $event['message']['text'];
 			
 			$message = str_replace(' ', '%20', $text);
-			$url = "http://nontc5.utcc-ict.com/Chatbot/api/line_call.php?word=$message";
-
-			$cURL = curl_init();
-
-			curl_setopt($cURL, CURLOPT_URL, $url);
-			curl_setopt($cURL, CURLOPT_HTTPGET, true);
-
-			curl_setopt($cURL, CURLOPT_HTTPHEADER, array(
-			    'Content-Type: application/json',
-			    'Accept: application/json'
-			));
-
-			$result = curl_exec($cURL);
-			curl_close($cURL);
-			$json = json_decode($result, true);
+			$url = 'http://nontc5.utcc-ict.com/Chatbot/api/line_call.php?word=$message';
+			$ch = curl_init($url);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			$data = curl_exec($ch);
+			curl_close($ch);
+			$json = json_decode($data, true);
+			//echo $data;
+			
 			
 			// Get replyToken
 			$replyToken = $event['replyToken'];
