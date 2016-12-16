@@ -59,6 +59,7 @@ if (!is_null($events['events'])) {
 			curl_close($ch);
 
 
+			sleep(5);
 			// Make a POST Request to Messaging API to Push to sender
 			$url = 'https://api.line.me/v2/bot/message/push';
 			$userId = 'U97ccc6dbb284fd98f20f0ae3b25631c1';
