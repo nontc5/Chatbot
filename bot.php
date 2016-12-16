@@ -14,9 +14,12 @@ if (!is_null($events['events'])) {
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			// Get text sent
 			$text = $event['message']['text'];
+
+			//get userID
+			$userId = $event['source']['userId'];
 			
 			$message = str_replace(' ', '%20', $text);
-			$url = "http://nontc5.utcc-ict.com/Chatbot/api/line_call.php?word=$message";
+			$url = "http://nontc5.utcc-ict.com/Chatbot/api/line_call.php?word=$message&userId=$userId";
 			$ch = curl_init($url);
 			curl_setopt($ch, CURLOPT_TIMEOUT, 5);
 			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
