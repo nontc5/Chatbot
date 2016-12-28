@@ -24,6 +24,10 @@ if (!is_null($events['events'])) {
 				$message = 'survey';
 				$statusSurvey = 1;
 			}
+			if($message == 1 OR $message == 2 OR $message == 3 OR $message == 4 OR $message == 5)
+			{
+				$statusSurvey = 1;
+			}
 			$url = "http://nontc5.utcc-ict.com/Chatbot/api/line_call.php?word=$message&userId=$userId";
 			$ch = curl_init($url);
 			curl_setopt($ch, CURLOPT_TIMEOUT, 5);
