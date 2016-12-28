@@ -26,6 +26,7 @@ if (!is_null($events['events'])) {
 			}
 			if($message == 1 OR $message == 2 OR $message == 3 OR $message == 4 OR $message == 5)
 			{
+				$message = 'surveyThank';
 				$statusSurvey = 1;
 			}
 			$url = "http://nontc5.utcc-ict.com/Chatbot/api/line_call.php?word=$message&userId=$userId";
