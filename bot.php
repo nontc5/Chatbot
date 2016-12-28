@@ -26,10 +26,11 @@ if (!is_null($events['events'])) {
 			}
 			if($message == 1 OR $message == 2 OR $message == 3 OR $message == 4 OR $message == 5)
 			{
+				$score = $message;
 				$message = 'surveyThank';
 				$statusSurvey = 1;
 			}
-			$url = "http://nontc5.utcc-ict.com/Chatbot/api/line_call.php?word=$message&userId=$userId";
+			$url = "http://nontc5.utcc-ict.com/Chatbot/api/line_call.php?word=$message&userId=$userId&score=$score";
 			$ch = curl_init($url);
 			curl_setopt($ch, CURLOPT_TIMEOUT, 5);
 			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
