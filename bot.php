@@ -64,6 +64,7 @@ if (!is_null($events['events'])) {
 			$url = 'https://api.line.me/v2/bot/message/push';
 			$userId = 'U97ccc6dbb284fd98f20f0ae3b25631c1';
 			$surveyQuestion = "ต้องการสอบถามข้อมูลเพิ่มเติมไหมครับ";
+			$abc = $json['userid'];
 			$messages = [
 				'type' => 'text',
 				//'text' => 'Bot Response: '.$text.$json['message']
@@ -72,7 +73,7 @@ if (!is_null($events['events'])) {
 
 			$data = [
 				'to' => $userId,
-				'messages' => $json['userid'],
+				'messages' => $abc,
 			];
 			$post = json_encode($data);
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
