@@ -68,12 +68,12 @@ if (!is_null($events['events'])) {
 			$messages = [
 				'type' => 'text',
 				//'text' => 'Bot Response: '.$text.$json['message']
-				'text' => $surveyQuestion
+				'text' => $abc
 			];
 
 			$data = [
 				'to' => $userId,
-				'messages' => $userId,
+				'messages' => [$messages],
 			];
 			$post = json_encode($data);
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
