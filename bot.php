@@ -19,6 +19,11 @@ if (!is_null($events['events'])) {
 			$userId = $event['source']['userId'];
 			
 			$message = str_replace(' ', '%20', $text);
+			if($message == 'ไม่' OR $message == 'ไม่ครับ' OR $message == 'ไม่ค่ะ')
+			{
+				$message = 'survey';
+				$survey = 1;
+			}
 			$url = "http://nontc5.utcc-ict.com/Chatbot/api/line_call.php?word=$message&userId=$userId";
 			$ch = curl_init($url);
 			curl_setopt($ch, CURLOPT_TIMEOUT, 5);
@@ -59,7 +64,8 @@ if (!is_null($events['events'])) {
 			curl_close($ch);
 
 
-			if($json['message']!= null OR $json['message'] != '')
+			// Check if reply message is blank (No Answer)
+			if($json['message']!= null OR $json['message'] != '' OR $survey != 1)
 			{
 
 				sleep(10);
