@@ -22,6 +22,7 @@ if (!is_null($events['events'])) {
 			if($message == 'ไม่' OR $message == 'ไม่ครับ' OR $message == 'ไม่ค่ะ')
 			{
 				$message = 'survey';
+				$statusSurvey = 1;
 			}
 			$url = "http://nontc5.utcc-ict.com/Chatbot/api/line_call.php?word=$message&userId=$userId";
 			$ch = curl_init($url);
@@ -66,36 +67,38 @@ if (!is_null($events['events'])) {
 			// Check if reply message is blank (No Answer)
 			if($json['message']!= null OR $json['message'] != '')
 			{
+				if($statusSurvey != 1)
+				{
+					sleep(10);
+					// Make a POST Request to Messaging API to Push to sender
+					$url = 'https://api.line.me/v2/bot/message/push';
+					$surveyQuestion = "ต้องการสอบถามข้อมูลเพิ่มเติมไหมครับ";
+					$abc = $json['userid'];
+					$messages = [
+						'type' => 'text',
+						//'text' => 'Bot Response: '.$text.$json['message']
+						'text' => $surveyQuestion
+					];
 
-				sleep(10);
-				// Make a POST Request to Messaging API to Push to sender
-				$url = 'https://api.line.me/v2/bot/message/push';
-				$surveyQuestion = "ต้องการสอบถามข้อมูลเพิ่มเติมไหมครับ";
-				$abc = $json['userid'];
-				$messages = [
-					'type' => 'text',
-					//'text' => 'Bot Response: '.$text.$json['message']
-					'text' => $surveyQuestion
-				];
+					$data = [
+						'to' => $userId,
+						'messages' => [$messages],
+					];
+					$post = json_encode($data);
+					$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
-				$data = [
-					'to' => $userId,
-					'messages' => [$messages],
-				];
-				$post = json_encode($data);
-				$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+					$ch = curl_init($url);
+					curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+					curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+					curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+					curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+					$result = curl_exec($ch);
+					curl_close($ch);
 
-				$ch = curl_init($url);
-				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-				curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-				curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-				curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-				$result = curl_exec($ch);
-				curl_close($ch);
-
-				echo $result . "\r\n";
-
+					echo $result . "\r\n";
+				}
+				
 			}
 
 			
