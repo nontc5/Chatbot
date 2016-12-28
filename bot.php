@@ -59,34 +59,41 @@ if (!is_null($events['events'])) {
 			curl_close($ch);
 
 
-			sleep(10);
-			// Make a POST Request to Messaging API to Push to sender
-			$url = 'https://api.line.me/v2/bot/message/push';
-			$surveyQuestion = "ต้องการสอบถามข้อมูลเพิ่มเติมไหมครับ";
-			$abc = $json['userid'];
-			$messages = [
-				'type' => 'text',
-				//'text' => 'Bot Response: '.$text.$json['message']
-				'text' => $surveyQuestion
-			];
+			if($json['message']!= null OR $json['message'] != '')
+			{
 
-			$data = [
-				'to' => $userId,
-				'messages' => [$messages],
-			];
-			$post = json_encode($data);
-			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+				sleep(10);
+				// Make a POST Request to Messaging API to Push to sender
+				$url = 'https://api.line.me/v2/bot/message/push';
+				$surveyQuestion = "ต้องการสอบถามข้อมูลเพิ่มเติมไหมครับ";
+				$abc = $json['userid'];
+				$messages = [
+					'type' => 'text',
+					//'text' => 'Bot Response: '.$text.$json['message']
+					'text' => $surveyQuestion
+				];
 
-			$ch = curl_init($url);
-			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-			$result = curl_exec($ch);
-			curl_close($ch);
+				$data = [
+					'to' => $userId,
+					'messages' => [$messages],
+				];
+				$post = json_encode($data);
+				$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
-			echo $result . "\r\n";
+				$ch = curl_init($url);
+				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+				curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+				curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+				$result = curl_exec($ch);
+				curl_close($ch);
+
+				echo $result . "\r\n";
+
+			}
+
+			
 		}
 	}
 }
