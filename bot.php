@@ -73,7 +73,7 @@ if (!is_null($events['events'])) {
 
 			$data = [
 				'to' => $userId,
-				'messages' => $abc,
+				'messages' => $userId,
 			];
 			$post = json_encode($data);
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
