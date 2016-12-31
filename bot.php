@@ -109,7 +109,7 @@ if (!is_null($events['events'])) {
 			{
 
 					$url = 'https://api.line.me/v2/bot/message/push';
-					$surveyQuestion = "ขออภัยครับ ไม่พบชุดคำถามในฐานข้อมูล รบกวนลองถามใหม่อีกครั้บครับ";
+					$surveyQuestion = "ขออภัยครับ ไม่พบชุดคำถามในฐานข้อมูล รบกวนลองเปลี่ยนคำถามใหม่อีกครั้บครับ";
 					$abc = $json['userid'];
 					$messages = [
 						'type' => 'text',
