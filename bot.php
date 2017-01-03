@@ -75,7 +75,7 @@ if (!is_null($events['events'])) {
 						sleep(3);
 						// Make a POST Request to Messaging API to Push to sender
 						$url = 'https://api.line.me/v2/bot/message/push';
-						$message = 'รบกวนให้คะแนนความพึงพอใจต่อการใช้งานด้วยครับ
+						$message = 'รบกวนให้คะแนนความพึงพอใจกับคำตอบที่ได้รับจากระบบด้วยครับ
 									(1-5)
 									พึงพอใจมาก กด 5
 									พึงพอใจ กด 4
@@ -146,7 +146,7 @@ if (!is_null($events['events'])) {
 						sleep(3);
 						// Make a POST Request to Messaging API to Push to sender
 						$url = 'https://api.line.me/v2/bot/message/push';
-						$message = 'รบกวนให้คะแนนความพึงพอใจต่อการใช้งานด้วยครับ
+						$message = 'รบกวนให้คะแนนความพึงพอใจกับคำตอบที่ได้รับจากระบบด้วยครับ
 									(1-5)
 									พึงพอใจมาก กด 5
 									พึงพอใจ กด 4
