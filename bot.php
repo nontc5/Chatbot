@@ -87,7 +87,7 @@ if (!is_null($events['events'])) {
 						$messages = [
 							'type' => 'text',
 							//'text' => 'Bot Response: '.$text.$json['message']
-							'text' => $surveyQuestion
+							'text' => $message
 						];
 
 						$data = [
@@ -158,7 +158,7 @@ if (!is_null($events['events'])) {
 						$messages = [
 							'type' => 'text',
 							//'text' => 'Bot Response: '.$text.$json['message']
-							'text' => $surveyQuestion
+							'text' => $message
 						];
 
 						$data = [
